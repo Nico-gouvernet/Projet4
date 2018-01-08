@@ -1,5 +1,5 @@
 <!-- Projet 4 Création du fichier Index.php Fait par GOUVERNET Nicolas le 08/01/2018 -->
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Billet simple pour l'Alaska</title>
