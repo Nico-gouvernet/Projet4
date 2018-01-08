@@ -4,7 +4,7 @@
     <head>
         <title>Billet simple pour l'Alaska</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href="view/style.css" rel="stylesheet" type="text/css" /> 
+        <link href="View/style.css" rel="stylesheet" type="text/css" /> 
     </head>
         
     <body>
