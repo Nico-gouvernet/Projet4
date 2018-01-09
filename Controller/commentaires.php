@@ -9,5 +9,5 @@ $billet = get_billet($_GET['billet']);
 include_once('Model/get_commentaires.php');
 $commentaires = get_commentaires($_GET['billet']);
 
-// (**Model**)  [..Affichage de la vue ..]
+// (**View**)  [..Affichage de la vue ..]
 include_once('View/commentaires.php');
