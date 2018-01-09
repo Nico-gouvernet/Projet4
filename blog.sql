@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 08 jan. 2018 à 16:13
+-- Généré le :  mar. 09 jan. 2018 à 14:29
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -25,28 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `billets`
+-- Structure de la table `commentaires`
 --
 
-DROP TABLE IF EXISTS `billets`;
-CREATE TABLE IF NOT EXISTS `billets` (
+DROP TABLE IF EXISTS `commentaires`;
+CREATE TABLE IF NOT EXISTS `commentaires` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date_creation` datetime NOT NULL,
-  `titre` text NOT NULL,
-  `contenu` text NOT NULL,
+  `id_billet` int(11) NOT NULL,
+  `affichage` int(11) NOT NULL,
+  `auteur` varchar(255) NOT NULL,
+  `commentaire` text NOT NULL,
+  `date_commentaire` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `billets`
+-- Déchargement des données de la table `commentaires`
 --
 
-INSERT INTO `billets` (`id`, `date_creation`, `titre`, `contenu`) VALUES
-(39, '2018-01-08 15:59:21', 'Chapitre test 5', '<p>Texte du Chapitre test 5.</p>'),
-(38, '2018-01-08 15:59:12', 'Chapitre test 4', '<p>Texte du Chapitre test 4.</p>'),
-(37, '2018-01-08 15:59:04', 'Chapitre test 3', '<p>Texte du Chapitre test 3.</p>'),
-(23, '2018-01-08 15:11:23', 'Chapitre test 1', '<p>Texte du Chapitre test 1.</p>'),
-(24, '2018-01-08 15:15:24', 'Chapitre test 2', '<p>Texte du Chapitre test 2.</p>');
+INSERT INTO `commentaires` (`id`, `id_billet`, `affichage`, `auteur`, `commentaire`, `date_commentaire`) VALUES
+(73, 2, 1, 'Franck', 'Commentaire de test n°1', '2018-01-09 15:43:01'),
+(72, 2, 3, 'Loic', 'Commentaire de test n°3', '2018-01-09 15:42:53'),
+(71, 2, 2, 'Hugo', 'Commentaire de test n°2', '2018-01-09 15:42:39'),
+(70, 2, 4, 'Lucie', 'Commentaire de test n°4', '2018-01-09 15:42:24');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
