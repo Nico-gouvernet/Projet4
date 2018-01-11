@@ -1,4 +1,5 @@
 <!-- Projet 4 Création du fichier Index.php Fait par GOUVERNET Nicolas le 08/01/2018 -->
+<!-- Modification du fichier le 11/01/2018 Mise en place de la POO pour la pagination l'administartion et le contenu avec le billet -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,44 +13,17 @@
 
         <!-- Mise en place de boutons pour la pagination-->  
 
-        <!-- ********************* Partie Précédent **************************** -->        
-    <a
-            <?php 
-                if(!isset($_GET['page']) OR $_GET['page']==1) 
-                    {
-                        echo 'style="display :none;";';
-                    }
-            ?>
-
-            href="index.php?page=<?php 
-                if(isset($_GET['page']))
-                     {
-                         echo ($_GET['page']-1); 
-                     }
-            ?>"
-
-        >Précédent</a>
-    
+        <!-- ********************* Partie Précédent **************************** -->  
+        
+     <?php if ($ixPage != 1) { ?>
+            <a href="index.php?section=index&page=<?php echo ($ixPage - 1); ?>">Précédent</a>
+        <?php } ?>
+        
     <!-- ************************  Partie suivante ********************************-->   
-        <a 
-            <?php 
-                 if(isset($_GET['page']) AND $_GET['page'] == $nbPage)
-                     {
-                        echo 'style="display :none;";';
-                     }
-            ?>
-
-            href="index.php?page=<?php
-                if(isset($_GET['page']))
-                    {
-                        echo ($_GET['page']+1); 
-                    }
-                else
-                    {
-                        echo 2;
-                    }
-            ?>"
-        >Suivant</a>
+        
+        <?php if ($ixPage != $nbPage) { ?>
+            <a href="index.php?section=index&page=<?php echo ($ixPage + 1); ?>">Suivant</a>
+        <?php } ?>
 
         <!-- chargement des billets -->
         <?php
@@ -58,18 +32,19 @@
         ?>
         <div class="news">
             <h3>
-                <?php echo $billet['titre']; ?>
-                <em>le <?php echo $billet['date_creation_fr']; ?></em>
+                <?php echo $billet->getTitre(); ?>
+                <em>le <?php echo $billet->getDate_creation_fr(); ?></em>
             </h3>
             
             <p>
-                <?php echo $billet['contenu']; ?>
+                <?php echo $billet->getContenu(); ?>
                 <br />
-                <em><a href="commentaires.php?billet=<?php echo $billet['id']; ?>">Commentaires</a></em>
+                <em><a href="index.php?section=commentaires&billet=<?php echo $billet->getId(); ?>">Commentaires</a></em>
             </p>
         </div>
         <?php
         }
         ?>
+        <p><a href="index.php?section=log">Administration</a></p>
     </body>
 </html>
