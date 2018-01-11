@@ -4,10 +4,8 @@
     <head>
         <meta charset="utf-8" />
         <title>Billet simple pour l'Alaska</title>
-        <link href="View/tyle.css" rel="stylesheet" />        
+        <link href="View/style.css" rel="stylesheet" />        
     </head>
-        
-
     <body>
         <h1>Billet simple pour l'Alaska</h1>
         <p><a href="index.php">Retour à la liste des billets</a></p>
@@ -18,8 +16,6 @@
                 <?php echo htmlspecialchars($billet->getTitre()); ?>
                 <em>le <?php echo $billet->getDate_creation_fr(); ?></em>
             </h3>
-            
-
             <p>
                 <?php
                 echo nl2br(htmlspecialchars($billet->getContenu()));
