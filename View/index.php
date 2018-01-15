@@ -10,21 +10,7 @@
         
     <body>
         <h1>Billet simple pour l'Alaska</h1>
-
-        <!-- Mise en place de boutons pour la pagination-->  
-
-        <!-- ********************* Partie Précédent **************************** -->  
         
-     <?php if ($ixPage != 1) { ?>
-            <a href="index.php?section=index&page=<?php echo ($ixPage - 1); ?>">Précédent</a>
-        <?php } ?>
-        
-    <!-- ************************  Partie suivante ********************************-->   
-        
-        <?php if ($ixPage != $nbPage) { ?>
-            <a href="index.php?section=index&page=<?php echo ($ixPage + 1); ?>">Suivant</a>
-        <?php } ?>
-
         <!-- chargement des billets -->
         <?php
         foreach($billets as $billet)
