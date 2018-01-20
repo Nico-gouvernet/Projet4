@@ -1,5 +1,6 @@
 <!-- Modification dans les normes le 15/01/2018 -->
 <!-- Oublie dans l'ancien fichié les underscores etc.. -->
+<!-- Modification dans les normes le 20/01/2018 -->
 <?php
 class Billet 
 {
@@ -59,14 +60,14 @@ class Billet
     public function getById($id)
     {         
         global $bdd;
-        try
+        if (ctype_digit($id)) 
         {
             $id = (int) $id;
-        }
-        catch (Exception $e)
+        } 
+        else 
         {
-            echo '$id n\'est pas un nombre.';
-        }        
+            echo $id . ' n\'est pas un nombre.';
+        }
         
         $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets WHERE id = :id');
         $req->bindParam(':id', $id, PDO::PARAM_INT);    /* permet de préciser qu'il s'agit d'un entier */
@@ -82,27 +83,56 @@ class Billet
     public function getByPage($offset, $limit)
     {
         global $bdd;
-        $offset = (int) $offset;
-        $limit = (int) $limit;
-            
-        $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets ORDER BY date_creation LIMIT :offset, :limit');
-        $req->bindParam(':offset', $offset, PDO::PARAM_INT);    /* permet de préciser qu'il s'agit d'un entier */
-        $req->bindParam(':limit', $limit, PDO::PARAM_INT);      /* permet de préciser qu'il s'agit d'un entier */
-        $req->execute();
-        $billets = $req->fetchAll();
+        //vérifications
+        if (is_int($offset)) 
+        {
+            $offset = (int) $offset;
+        } 
+        else 
+        {
+            echo $offset. ' n\'est pas un nombre.';
+        }    
+        if (is_int($limit)) 
+        {
+            $limit = (int) $limit;
+        } 
+        else 
+        {
+            echo $limit . ' n\'est pas un nombre.';
+        }
+        //éxécution de la requête
+        try
+        {
+            $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets ORDER BY date_creation LIMIT :offset, :limit');
+            $req->bindParam(':offset', $offset, PDO::PARAM_INT);    /* permet de préciser qu'il s'agit d'un entier */
+            $req->bindParam(':limit', $limit, PDO::PARAM_INT);      /* permet de préciser qu'il s'agit d'un entier */
+            $req->execute();
+            $billets = $req->fetchAll();
+        }
+        catch (Exception $e)
+        {
+            echo 'Echec de la requête vérifiez les paramètres.';
+        }   
         $req->closeCursor ();
         
-        return $billets;
+        return $billets; 
     }
     public function getPageNb() 
     {
         //calcul du nombre de pages 
-        global $bdd;
-        $requeteNbLigne = $bdd->query ('SELECT COUNT(id) as countid FROM billets');
-        $nbLigne = $requeteNbLigne->fetch();
-        $nbPage = (int)($nbLigne['countid']/5) + 1;
-        $requeteNbLigne->closeCursor ();
-        return $nbPage;
+        try 
+        {            
+            global $bdd;
+            $requeteNbLigne = $bdd->query ('SELECT COUNT(id) as countid FROM billets');
+            $nbLigne = $requeteNbLigne->fetch();
+            $nbPage = (int)($nbLigne['countid']/5) + 1;
+            $requeteNbLigne->closeCursor ();
+            return $nbPage;
+        }
+        catch (Exception $e)
+        {
+            echo 'Echec de la requête vérifiez les paramètres.';
+        }
     }
 }
 ?>
