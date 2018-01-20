@@ -54,7 +54,7 @@ class Billet
     }
     public function setDate_creation_fr($date_creation_fr) 
     {
-        $this->date_creation_fr = $date_creation_fr;
+        $this->_date_creation_fr = $date_creation_fr;
     }
     // Data access
     public function getById($id)
@@ -68,23 +68,30 @@ class Billet
         {
             echo $id . ' n\'est pas un nombre.';
         }
-        
-        $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets WHERE id = :id');
-        $req->bindParam(':id', $id, PDO::PARAM_INT);    /* permet de préciser qu'il s'agit d'un entier */
-        $req->execute();
-        $billet = $req->fetch();
-        $req->closeCursor ();
-        
-        $this->_id = $id;        
-        $this->_titre = $billet['titre'];
-        $this->_contenu = $billet['contenu'];
-        $this->_date_creation_fr = $billet['date_creation_fr'];
+        try 
+        {
+            $req = $bdd->prepare('SELECT id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr FROM billets WHERE id = :id');
+            $req->bindParam(':id', $id, PDO::PARAM_INT);    /* permet de préciser qu'il s'agit d'un entier */
+            $req->execute();
+            $billet = $req->fetch();
+            $req->closeCursor ();
+            
+            $this->_id = $id;        
+            $this->_titre = $billet['titre'];
+            $this->_contenu = $billet['contenu'];
+            $this->_date_creation_fr = $billet['date_creation_fr'];
+        }
+        catch (Exception $e)
+        {
+            echo $e->getMessage();
+            echo 'Echec de la requête vérifiez les paramètres.';
+        }  
     }
     public function getByPage($offset, $limit)
     {
         global $bdd;
         //vérifications
-        if (is_int($offset)) 
+        if (is_int($offset) || ctype_digit($offset)) 
         {
             $offset = (int) $offset;
         } 
@@ -108,14 +115,29 @@ class Billet
             $req->bindParam(':limit', $limit, PDO::PARAM_INT);      /* permet de préciser qu'il s'agit d'un entier */
             $req->execute();
             $billets = $req->fetchAll();
+            $billets_modeles = [];
+            foreach($billets as $billet) {
+                $currentBillet = new Billet();
+                $currentBillet->setId($billet['id']);
+                $currentBillet->setTitre($billet['titre']);
+                $currentBillet->setContenu($billet['contenu']);
+                $currentBillet->setDate_creation_fr($billet['date_creation_fr']);
+                
+                $Billet_modeles[] = $currentBillet;
+            }
+            $req->closeCursor ();
+            
+            return $Billet_modeles;
+            
+            $req->closeCursor ();
+            
+            return $billets; 
         }
         catch (Exception $e)
         {
+            echo $e->getMessage();
             echo 'Echec de la requête vérifiez les paramètres.';
         }   
-        $req->closeCursor ();
-        
-        return $billets; 
     }
     public function getPageNb() 
     {
@@ -131,6 +153,7 @@ class Billet
         }
         catch (Exception $e)
         {
+            echo $e->getMessage();
             echo 'Echec de la requête vérifiez les paramètres.';
         }
     }
