@@ -1,2 +1,2 @@
 <?php 
-include_once('vue/blog/log.php');
+include_once('View/log.php');
