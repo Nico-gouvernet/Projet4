@@ -34,10 +34,11 @@ else
 $billets = $billet->getByPage($page, 5);
 // (**Controller**)  [.. je fait du traitement sur les données ..]
 // [.. Sécurisation de l'affichage ..]
-foreach($billets as $cle => $billet)
+/*
 {
     $billets[$cle]['titre'] = htmlspecialchars($billet['titre']);
     $billets[$cle]['contenu'] = nl2br(htmlspecialchars($billet['contenu']));
 }
+*/
 // (**View**) [.. Affichage de la page ..]
 include_once('View/index.php');
