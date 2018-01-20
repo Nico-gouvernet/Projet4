@@ -1,4 +1,5 @@
 <!-- Création du fichier le 15/01/2018 -->
+<!-- Modification du fichier le 20/01/2018-->
 <?php
 class Commentaire
 {
@@ -70,9 +71,17 @@ class Commentaire
     // Data access
     public function getForId($billetId) 
     {
+        //vérification
         global $bdd;
-        $billetId = (int) $billetId;
-        
+        if (ctype_digit($billetId)) 
+        {
+            $billetId = (int) $billetId;
+        } 
+        else 
+        {
+            echo $billetId . ' n\'est pas un nombre.';
+        }
+        // éxécution de la requête
         $req = $bdd->prepare('SELECT auteur, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS date_commentaire_fr FROM commentaires WHERE id_billet = :billetId ORDER BY date_commentaire');
         $req->bindParam(':billetId', $billetId, PDO::PARAM_INT);    /* permet de préciser qu'il s'agit d'un entier */
         $req->execute();
@@ -84,17 +93,47 @@ class Commentaire
     public function sendCommentaire ($id_billet, $auteur, $commentaire)
     {
         global $bdd;
-        $id_billet = (int) $id_billet;
-        $auteur = (string) $auteur;
-        $commentaire = (string) $commentaire;
+        //vérifications 
+        if (ctype_digit($id_billet)) 
+        {
+            $id_billet = (int) $id_billet;
+        } 
+        else 
+        {
+            echo $id_billet . ' n\'est pas un nombre.';
+        }
+        if (is_string($auteur))
+        {
+            $auteur = (string) $auteur;
+        }
+        else
+        {
+            echo $auteur . ' n\'est pas du texte valide.';
+        }
         
-        $req = $bdd->prepare ('INSERT INTO commentaires (`id`, `id_billet`, `auteur`, `commentaire`, `date_commentaire`) VALUES (NULL, :id_billet, :auteur, :commentaire, CURRENT_TIMESTAMP)');
-        $req->bindParam(':id_billet', $id_billet, PDO::PARAM_INT);
-        $req->bindParam(':auteur', $auteur, PDO::PARAM_STR);
-        $req->bindParam(':commentaire', $commentaire, PDO::PARAM_STR);
-        $req->execute();
-        
-        $req->closeCursor ();
+        if (is_string($commentaire))
+        {
+            $commentaire = (string) $commentaire;
+        }
+        else
+        {
+            echo $commentaire . ' n\'est pas du texte valide.';
+        }
+        // éxécution de la requête
+        try 
+        {        
+            $req = $bdd->prepare ('INSERT INTO commentaires (`id`, `id_billet`, `auteur`, `commentaire`, `date_commentaire`) VALUES (NULL, :id_billet, :auteur, :commentaire, CURRENT_TIMESTAMP)');
+            $req->bindParam(':id_billet', $id_billet, PDO::PARAM_INT);
+            $req->bindParam(':auteur', $auteur, PDO::PARAM_STR);
+            $req->bindParam(':commentaire', $commentaire, PDO::PARAM_STR);
+            $req->execute();
+            
+            $req->closeCursor ();
+        }
+        catch (Exception $e)
+        {
+            echo 'Echec de la requête vérifiez les paramètres.';
+        }   
         
     }
 }
