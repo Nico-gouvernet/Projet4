@@ -1,28 +1,219 @@
-/*Création du fichier style.css de base pour le projet 4  !! le 08/01/2018 */
-h1, h3
-{
-    text-align:center;
+body{
+    font-family: 'Playfair Display', serif;
 }
-h3
+*
 {
-    background-color:black;
-    color:white;
-    font-size:0.9em;
-    margin-bottom:0px;
+	text-align: center;
 }
-.news p
+/*---------------------------------------------- Style des titres ----------------------------------------------------------*/
+h1 ,h2
 {
-    background-color:#CCCCCC;
-    margin-top:0px;
-}
-.news
-{
-    width:70%;
-    margin:auto;
+   margin-top: 50px;
+   margin-bottom: 40px;
+    color: #07043d;
 }
 
+h3
+{
+    font-size: 2.5rem;
+	color: #07043d;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+/*---------------------------------------------- Fin style des titres ----------------------------------------------------------*/
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
 a
 {
     text-decoration: none;
-    color: blue;
+    color: #07043d;
 }
+/*---------------------------------------------- Bouttons ----------------------------------------------------------*/
+.buttons{
+    text-align: center;
+    color: #A5260A;
+    padding: 3px;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #A5260A;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 1em;
+}
+
+.buttons:hover{
+    border: 1px solid #A5260A;
+    color: white;
+    background-color: rgba(165, 38, 10, 0.8);
+    transition: 0.3s;
+    font-weight: bold;
+}
+.btn
+{
+	color: #A5260A;
+    padding: 3px;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #A5260A;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 1em;
+}
+}
+/*---------------------------------------------- Fin des boutons  ----------------------------------------------------------*/
+/*---------------------------------------------  Bloc du billet ----------------------------------------------------------*/
+.news div * 
+{
+	text-align: left;
+    margin-top:0px;
+}
+
+.datePublication
+{	
+	display: inline-block;
+	font-size: x-small;
+	margin-bottom: 10px;
+}
+
+.news, .commentaire
+{
+    width:70%;
+    margin:auto;
+    margin-top: 15px;
+    border:1px solid #CCCCCC;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 5px grey;
+}
+/*---------------------------------------------  Fin du Bloc du billet ----------------------------------------------------------*/
+/*---------------------------------------------  Partie Commentaires ----------------------------------------------------------*/
+.commentaire
+{
+	width: 60%;	
+}
+
+.commentaire p
+{
+	text-align: left;
+}
+
+textarea
+{
+	text-align: left;
+	margin-top: 10px;
+	width: 60%;
+	height: 90px;
+}
+/*---------------------------------------------  Fin Commentaires ----------------------------------------------------------*/
+/*---------------------------------------------  Elements de la page ! ----------------------------------------------------------*/
+#auteur
+{
+	width: 50%;
+	max-width: 300px;
+}
+
+input
+{
+	margin: 20px;
+}
+
+#deconnexion 
+{
+	margin-top: 10px;
+	margin-bottom: 40px;
+}
+
+#administration
+{
+	margin-top: 40px;
+	margin-bottom: 0px;
+}
+
+#lienAdmin
+{
+	margin-top: 30px;
+}
+/*---------------------------------------------  Fin des Elements de la page ! ----------------------------------------------------------*/
+/*---------------------------------------------   Media Quieries ----------------------------------------------------------*/
+@media all and (max-width: 1024px) {
+
+	.news, .commentaire
+	{
+		width: 100%;
+	}
+
+	textarea
+	{
+		width: 100%;
+	}
+}
+#footer {
+    text-align: center;
+    margin: 100px 0 50px 0;
+}
+#footer p {
+    padding: 0;
+    margin: 0;
+    color: #040222;
+    font-size: 0.9em;
+}
+@media (min-width: 1200px){
+    body{
+        padding: 30px 0 30px 0;
+    }
+    
+    .container{
+        padding: 75px;
+    }
+}
+@media (min-width: 992px){
+    body{
+        padding: 20px 0 20px 0;
+    }
+
+    .buttons{
+        max-width: 100%;
+        -moz-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    
+    .buttons:hover{
+        -moz-transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+    
+    .container{
+        padding: 50px;
+    }
+}
+@media (min-width: 768px){
+    body{
+        padding: 10px 0 10px 0;
+    }
+    
+    .container{
+        box-shadow: 3px 3px 10px black;
+    }
+}
+
+@media (min-width: 576px){
+    body{
+        background-image: url("../../View/images/img02.jpg");
+    }
+}
+
+#global{
+    
+    background-image: url("../../View/images/paper.png");
+}
+/*---------------------------------------------   Fin des Media Quieries ----------------------------------------------------------*/
