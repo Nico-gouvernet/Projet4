@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Authentification</title>           
+        <title>Authentification</title>        
+        <?php include_once('head.php');?>    
     </head>
     <body>
         <section id="global" class="container">
@@ -21,8 +22,8 @@
         </section>
     </section>
         <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="./vue/scripts/sha1.js"></script>
-        <script src="./vue/scripts/log.js" type="text/javascript"></script>
+        <script type="text/javascript" src="./View/scripts/sha1.js"></script>
+        <script src="./View/scripts/log.js" type="text/javascript"></script>
         <?php include_once('liensBootstrap.php');?>
     </body>
 </html>
