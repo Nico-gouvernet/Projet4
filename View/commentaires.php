@@ -46,7 +46,7 @@
 <!------------------------------------------------------------------- Fin de la boucle des commentaires---------------------------------------->
 <!------------------------------------------------------------------- formulaire d'ajout de commentaires ---------------------------------------->
         <h2>Poster un commentaire</h2>
-            <form action="controleur/blog/commentaire_post.php" method="post" onsubmit="commentaireEnvoye()">
+            <form action="Controller/commentaire_post.php" method="post" onsubmit="commentaireEnvoye()">
                 <p>
                     <label for="auteur">Pseudo</label> : <br /> <input type="text" name="auteur" id="auteur" /><br />
                     <label for="commentaire">Message</label> : <br /> <textarea name="commentaire" id="commentaire"></textarea><br />
