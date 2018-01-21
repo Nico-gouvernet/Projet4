@@ -1,6 +1,6 @@
 $(function() {
 
-    $('#boutonValider').click(function() {
+    $('#boutonValider').on('click touch', function() {
         var password = $('#mot_de_passe').val();
         var encodedPassword = sha1(password);
 
