@@ -91,7 +91,7 @@ ob_start();
         </section>
 
     <script type="text/javascript" src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
-    <script type="text/javascript" src="vue/scripts/tinyMCE.js"></script>
+    <script type="text/javascript" src="View/scripts/tinyMCE.js"></script>
     <?php include_once('liensBootstrap.php');?>
 
     </body>
