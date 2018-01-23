@@ -29,9 +29,27 @@
         ?>  
 <!------------------------------------------------------------------- Fin du Chargement du billet ---------------------------------------->
         </section>
+            
             <p>Billet simple pour l'Akaska - Jean Forteroche</p>
             <p>Réalisé par GOUVERNET Nicolas - avec HTML5/CSS3 et PHP 7.2.1</p>
             <p><a href="index.php?section=log" class="btn btn-secondary btn-sm" id="administration">Administration</a></p>
+                       <!-- Boutons pagination-->    
+            
+        <?php if ($ixPage != 1) { ?>
+            <a href="index.php?section=index&page=<?php echo ($ixPage - 1); ?>" class="btn btn-secondary btn-sm">Précédent</a>
+        <?php } ?>
+
+        <?php if ($ixPage != $nbPage) { ?>
+            <a href="index.php?section=index&page=<?php echo ($ixPage + 1); ?>" class="btn btn-secondary btn-sm">Suivant</a>
+        <?php } ?>
+        <br />
+        <?php if ($ixPage == $nbPage) { ?>
+            <a href="index.php?section=index&page=<?php echo (1); ?>" class="btn btn-secondary btn-sm">Permière page</a>
+        <?php } ?>
+        <?php if ($ixPage == 1) { ?>
+            <a href="index.php?section=index&page=<?php echo ($nbPage); ?>" class="btn btn-secondary btn-sm">Dernière page</a>
+        <?php } ?>
+            
         </section>    
         <?php include_once('liensBootstrap.php');?>
     </body>
