@@ -45,14 +45,17 @@
         ?>
 <!------------------------------------------------------------------- Fin de la boucle des commentaires---------------------------------------->
 <!------------------------------------------------------------------- formulaire d'ajout de commentaires ---------------------------------------->
+
         <h2>Poster un commentaire</h2>
-            <form action="Controller/commentaire_post.php" method="post" onsubmit="commentaireEnvoye()">
-                <p>
-                    <label for="auteur">Pseudo</label> : <br /> <input type="text" name="auteur" id="auteur" /><br />
-                    <label for="commentaire">Message</label> : <br /> <textarea name="commentaire" id="commentaire"></textarea><br />
-                    <input type="hidden" name="id_billet" value=<?php echo "$id_billet";?>/>
-                    <input type="submit" value="Envoyer" class="btn btn-secondary btn-sm"/>
-               </p>
+        <form action="Controller/commentaire_post.php" method="post" onsubmit="commentaireEnvoye()">
+            <p>
+
+                <label for="auteur">Pseudo</label> : <br /> <input type="text" name="auteur" id="auteur" /><br />
+                <label for="commentaire">Message</label> : <br /> <textarea name="commentaire" id="commentaire"></textarea><br />
+                <input type="hidden" name="id_billet" value=<?php echo "$id_billet";?> />
+                <input type="submit" value="Envoyer" class="btn btn-secondary btn-sm"/>
+
+            </p>
         </form>
 <!------------------------------------------------------------------- fin formulaire d'ajout de commentaires ---------------------------------------->
             <footer class="row">
