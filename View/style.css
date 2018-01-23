@@ -208,12 +208,12 @@ input
 
 @media (min-width: 576px){
     body{
-        background-image: url("../../View/images/img02.jpg");
+        background-image: url("../View/images/img02.jpg");
     }
 }
 
 #global{
     
-    background-image: url("../../View/images/paper.png");
+    background-image: url("../View/images/paper.png");
 }
 /*---------------------------------------------   Fin des Media Quieries ----------------------------------------------------------*/
